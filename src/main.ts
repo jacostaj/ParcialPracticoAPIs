@@ -8,7 +8,6 @@ async function bootstrap() {
     prefix: 'api/v',
     defaultVersion: '1',
   });
-  
   await app.listen(3000);
 }
 bootstrap();
