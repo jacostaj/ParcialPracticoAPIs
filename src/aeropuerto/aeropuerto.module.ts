@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AeropuertoService } from './aeropuerto.service';
-import { AeropuertoController } from './aeropuerto.controller';
+import { AeropuertoController } from './airports.controller';
 import { AeropuertoEntity } from './aeropuerto.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({

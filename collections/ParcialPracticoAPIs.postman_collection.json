@@ -1,0 +1,1767 @@
+{
+	"info": {
+		"_postman_id": "e83284bb-9052-4656-89d5-8142b4f11f14",
+		"name": "ParcialPracticoAPIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20420348"
+	},
+	"item": [
+		{
+			"name": "Airport",
+			"item": [
+				{
+					"name": "Create a airport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()\r",
+									"pm.globals.set(\"airportId\", data.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"   pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"El Dorado\",\r\n    \"codigo\": \"123\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/airports",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create a airport",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"El Dorado\",\r\n    \"codigo\": \"123\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"El Dorado\",\n    \"id\": \"2692a434-23ea-4e86-b4bf-dc1aaf8a041a\"\n}"
+						},
+						{
+							"name": "Create a airport with incomplete JSON",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"El Dorado\",\r\n    \"codigo\": \"123\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Missing attributes in the JSON.\"\n}"
+						},
+						{
+							"name": "Create a airport that already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"El Dorado\",\r\n    \"codigo\": \"123\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Already exists a gastronomic culture with the indicated name.\"\n}"
+						},
+						{
+							"name": "Create a airport without autorization",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"El Dorado\",\r\n    \"codigo\": \"123\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get airport by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/airports/{{airportId}}",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports",
+								"{{airportId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get airport by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports/{{airportId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"{{airportId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"El Dorado\",\n    \"codigo\": \"123\",\n    \"pais\":\"Colombia\",\n    \"ciudad\":\"Medellin\"\n}"
+						},
+						{
+							"name": "Get airport by id without authorization",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports/{{airportId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"{{airportId}}"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get an invalid airport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"The airport with the given id was not found\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airports/c0725695-512c-4c1a-9813-a3618db42f5d",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports",
+								"c0725695-512c-4c1a-9813-a3618db42f5d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an invalid airport",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airports/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The airport with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all airport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of airports > ' + 0, function () {\r",
+									"   var data = pm.response.json()\r",
+									"   pm.expect(data.length).to.greaterThan(0)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airports",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all airport",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airports",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"El Dorado\",\n    \"codigo\": \"123\",\n    \"pais\": \"Colombia\",\n    \"ciudad\": \"Medellin\"\n}"
+						},
+						{
+							"name": "Get all airport without authorization",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airports",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update airport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Olaya Herrera\",\r\n    \"codigo\": \"321\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/airports/{{airportId}}",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports",
+								"{{airportId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update airport",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Olaya Herrera\",\r\n    \"codigo\": \"321\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports/{{airportId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"{{airportId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"Olaya Herrera\",\n    \"codigo\": \"321\",\n    \"pais\": \"Colombia\",\n    \"ciudad\": \"Medellin\"\n}"
+						},
+						{
+							"name": "Update airport with authorization",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Olaya Herrera\",\r\n    \"codigo\": \"321\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports/{{airportId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"{{airportId}}"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update an invalid airport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Olaya Herrera\",\r\n    \"codigo\": \"321\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/airports/c0725695-512c-4c1a-9813-a3618db42f5d",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports",
+								"c0725695-512c-4c1a-9813-a3618db42f5d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an invalid airport",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Olaya Herrera\",\r\n    \"codigo\": \"321\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The airport with the given id was not found\"\n}"
+						},
+						{
+							"name": "Update an invalid airport with incomplete JSON",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Olaya Herrera\",\r\n    \"codigo\": \"321\",\r\n    \"pais\": \"Colombia\",\r\n    \"ciudad\": \"Medellin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airports/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Missing attributes in the JSON.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete airport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"   pm.response.to.have.status(204);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airports/{{airportId}}",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports",
+								"{{airportId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete airport",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airports/{{airportId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"{{airportId}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Resource has been deleted.\"\n}"
+						},
+						{
+							"name": "Delete airport without authorization",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airports/{{airportId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"{{airportId}}"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete an invalid airport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"The airport with the given id was not found\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airports/c0725695-512c-4c1a-9813-a3618db42f5d",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airports",
+								"c0725695-512c-4c1a-9813-a3618db42f5d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an invalid airport",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airports/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airports",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The airport with the given id was not found\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Aeropuerto es un área definida de superficie terrestre (que incluye todas sus edificaciones, instalaciones y equipos), destinado total o parcialmente a la llegada, partida o movimiento de aeronaves. Son aeropuertos aquellos aeródromos públicos que cuentan con servicios o intensidad de movimiento aéreo que justifiquen tal denominación. Aquellos aeródromos con vuelos provenientes del o con destino al extranjero, donde se presten servicios de sanidad, aduana, migraciones y otros, se denominan aeródromos o aeropuertos internacionales"
+		},
+		{
+			"name": "Airline",
+			"item": [
+				{
+					"name": "Create airline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()\r",
+									"pm.globals.set(\"airlineId\", data.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"   pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Avianca\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"avianca.com.co\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/airlines",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create airline",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Avianca\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"avianca.com.co\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Avianca\",\n    \"id\": \"2692a434-23ea-4e86-b4bf-dc1aaf8a041a\"\n}"
+						},
+						{
+							"name": "Create airline without incomplete JSON",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Avianca\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"avianca.com.co\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Missing attributes in the JSON.\"\n}"
+						},
+						{
+							"name": "Create airline thst alreadys exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Avianca\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"avianca.com.co\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Already exists a airline with the indicated name.\"\n}"
+						},
+						{
+							"name": "Create airline wiothout autorization",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Avianca\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"avianca.com.co\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get airline by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines",
+								"{{airlineId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get airline by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"{{airlineId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nombre\": \"Avianca\",\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\n    \"fechaFundacion\": \"01-02-1970\",\n    \"paginaWeb\": \"avianca.com.co\"\n}"
+						},
+						{
+							"name": "Get airline by id without authorization",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"{{airlineId}}"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get an invalid airline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"The airline with the given id was not found\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airlines/c0725695-512c-4c1a-9813-a3618db42f5d",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines",
+								"c0725695-512c-4c1a-9813-a3618db42f5d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an invalid airline",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The airline with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all airline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of airlines > ' + 0, function () {\r",
+									"   var data = pm.response.json()\r",
+									"   pm.expect(data.length).to.greaterThan(0)\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airlines",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all airline",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nombre\": \"Avianca\",\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\n    \"fechaFundacion\": \"01-02-1970\",\n    \"paginaWeb\": \"avianca.com.co\"\n}"
+						},
+						{
+							"name": "Get all airline without authorization",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update airline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Viva colombia\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"viva.com.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines",
+								"{{airlineId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update airline",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Viva colombia\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"viva.com.co\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"{{airlineId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nombre\": \"viva colombia\",\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\n    \"fechaFundacion\": \"01-02-1970\",\n    \"paginaWeb\": \"viva.com.co\"\n}"
+						},
+						{
+							"name": "Update airline without authorization",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Viva colombia\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"viva.com.co\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"{{airlineId}}"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update an invalid airline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"The airlines with the given id was not found\");\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Viva colombia\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"viva.com.co\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL_BASE}}/airlines/c0725695-512c-4c1a-9813-a3618db42f5d",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines",
+								"c0725695-512c-4c1a-9813-a3618db42f5d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an invalid airline",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Viva colombia\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"viva.com.co\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The airline with the given id was not found\"\n}"
+						},
+						{
+							"name": "Update an invalid airline with incomplete JSON",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Viva colombia\",\r\n    \"descripcion\": \"Avianca aerlinea colombiana desde 1970\",\r\n    \"fechaFundacion\": \"01-02-1970\",\r\n    \"paginaWeb\": \"viva.com.co\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Missing attributes in the JSON.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete airline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"   pm.response.to.have.status(204);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines",
+								"{{airlineId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete airline",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"{{airlineId}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Resource has been deleted.\"\n}"
+						},
+						{
+							"name": "Delete airline without autorization",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/{{airlineId}}",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"{{airlineId}}"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Request without authorization.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete an invalid airline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"   pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get expected error message\", function () {\r",
+									"   var data = pm.response.json();\r",
+									"   pm.expect(data.message).to.eql(\"The airline with the given id was not found\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL_BASE}}/airlines/c0725695-512c-4c1a-9813-a3618db42f5d",
+							"host": [
+								"{{URL_BASE}}"
+							],
+							"path": [
+								"airlines",
+								"c0725695-512c-4c1a-9813-a3618db42f5d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an invalid airline",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL_BASE}}/airlines/c0725695-512c-4c1a-9813-a3618db42f5d",
+									"host": [
+										"{{URL_BASE}}"
+									],
+									"path": [
+										"airlines",
+										"c0725695-512c-4c1a-9813-a3618db42f5d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The airline with the given id was not found\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Una **aerolínea**, **línea aérea** o **compañía aérea** es una empresa que se dedica al transporte de pasajeros o carga y, en algunos casos, animales por medio de vehículos aéreos\n\nEl mundo de las líneas aéreas es complejo. Existen compañías que se dedican a transportar pasajeros y carga de forma regular, mientras que también hay otras empresas que transportan a sus clientes o grupos de clientes de la forma puntual acordada entre ellos"
+		},
+		{
+			"name": "Airport-Airline",
+			"item": []
+		}
+	]
+}

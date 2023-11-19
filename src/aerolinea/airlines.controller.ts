@@ -4,7 +4,7 @@ import { AerolineaDto } from './aerolinea.dto';
 import { AerolineaEntity } from './aerolinea.entity';
 import { plainToInstance } from 'class-transformer';
 import { AerolineaService } from './aerolinea.service';
-@Controller('aerolinea')
+@Controller('airlines')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class AerolineaController {
     constructor(private readonly aerolineaService: AerolineaService) { }
@@ -12,23 +12,23 @@ export class AerolineaController {
     async findAll() {
     return await this.aerolineaService.findAll();
     }
-    @Get(':airlines')
-    async findOne(@Param('airlines') airlines: string) {
-        return await this.aerolineaService.findOne(airlines);
+    @Get(':airlineId')
+    async findOne(@Param('airlineId') airlineId: string) {
+        return await this.aerolineaService.findOne(airlineId);
     }
     @Post()
     async create(@Body() aerolineaDto: AerolineaDto) {
     const airline: AerolineaEntity = plainToInstance(AerolineaEntity, aerolineaDto);
     return await this.aerolineaService.create(airline);
     }
-    @Put(':airlines')
-    async update(@Param('airlines') airlines: string, @Body() aerolineaDto: AerolineaDto) {
+    @Put(':airlineId')
+    async update(@Param('airlineId') airlineId: string, @Body() aerolineaDto: AerolineaDto) {
       const airline: AerolineaEntity = plainToInstance(AerolineaEntity, aerolineaDto);
-      return await this.aerolineaService.update(airlines, airline);
+      return await this.aerolineaService.update(airlineId, airline);
     }
-    @Delete(':airlines')
+    @Delete(':airlineId')
     @HttpCode(204)
-    async delete(@Param('airlines') airlines: string) {
-      return await this.aerolineaService.delete(airlines);
+    async delete(@Param('airlineId') airlineId: string) {
+      return await this.aerolineaService.delete(airlineId);
     }
 }
