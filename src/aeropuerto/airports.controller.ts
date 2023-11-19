@@ -4,6 +4,7 @@ import { AeropuertoDto } from './aeropuerto.dto';
 import { plainToInstance } from 'class-transformer';
 import { AeropuertoService } from './aeropuerto.service';
 import { AeropuertoEntity } from './aeropuerto.entity';
+
 @Controller('airports')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class AeropuertoController {
@@ -12,6 +13,7 @@ export class AeropuertoController {
     async findAll() {
     return await this.aeropuertoService.findAll();
     }
+
     @Get(':airportId')
     async findOne(@Param('airportId') airportId: string) {
         return await this.aeropuertoService.findOne(airportId);
