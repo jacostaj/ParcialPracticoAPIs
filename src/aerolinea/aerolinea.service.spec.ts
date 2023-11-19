@@ -5,10 +5,12 @@ import { Repository } from 'typeorm';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { AerolineaEntity } from './aerolinea.entity';
 import { faker } from '@faker-js/faker';
+import { AeropuertoEntity } from 'src/aeropuerto/aeropuerto.entity';
 describe('AerolineaService', () => {
   let service: AerolineaService;
   let repository: Repository<AerolineaEntity>;
   let aerolineaList: AerolineaEntity[];
+  let aeropuertoEntity: AeropuertoEntity
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [...TypeOrmTestingConfig()],
@@ -59,7 +61,7 @@ describe('AerolineaService', () => {
       descripcion: faker.lorem.sentence(),
       fechaFundacion: faker.lorem.sentence(),
       paginaWeb: faker.lorem.sentence(),
-      aeropuerto: [],
+      aeropuerto: aeropuertoEntity,
     }
  
     const newAerolinea: AerolineaEntity = await service.create(aerolinea);
